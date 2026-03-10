@@ -1,0 +1,20 @@
+{
+    "product": [
+        {
+            "'id":1,
+            "product":"Shirt",
+            "Description":"Description aldjf alskd",
+            "price": 4000,
+            "quantity":3
+
+        },
+        {
+            "'id":2,
+            "product":"Shirt",
+            "Description":"Description aldjf alskd",
+            "price": 4000,
+            "quantity":3
+
+        }
+    ]
+}

@@ -6,7 +6,6 @@ import App from './App.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-  </StrictMode>,jsx, create navigation buttons to pages using:
-  
-  Link from react-router-dom
+    
+  </StrictMode>
 )

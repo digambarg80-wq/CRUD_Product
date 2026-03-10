@@ -1,11 +1,12 @@
+//Update.jsx
 import React from 'react'
 
 function Update() {
   return (
     <div>
-      <h1>Update Data</h1>
+        <h1>Update Product </h1>
+    
 
-      
     </div>
   )
 }

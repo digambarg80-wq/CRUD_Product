@@ -1,49 +1,62 @@
 //Create.jsx
-
-import{ useState } from 'react'
-import axios from "axios";
+import React, {  useState } from 'react'
+import axios from 'axios';
 function Create() {
-    const[value, setValue] = useState("");
-    
-    const 
-   
 
+  const [value, setValue]=useState({
+    product:"",
+    description:"",
+    price:"",
+    quantity:""
+
+  });
+
+  function handleChange(e){
+    setValue({
+      ...value,[e.target.name]:e.target.value
+    });
+  }
+axios.post("http://localhost:3000/product",value)
+.then(res =>{
+  console.log("Product added ",res.data);
+})
+.catch(err => console.log(err));
   return (
     <div>
-      
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="prodname">Proudct</label>
-        <input type="text" name="prodname" id="prodname" required placeholder='Enter product name'
-        onChange={(e)=> setpName(e.target.value)}
-        /><br />
+        <h1>Add Prdouct</h1>
+
+        <form onSubmit={handleSubmit}>
+            
+            <input type="text"  placeholder='ProductName' required
+            
+           
+            /><br />
+
+            <input type="text" placeholder='Enter description ' required 
+            
+           
+            /><br />
+
+            <input type="number" placeholder='enter Price of Product'  required
+           
+            
+            /><br />
+
+            <input type="text" placeholder='Enter Quantity of Product' required
+            
+            
+            /><br />
 
 
 
-        <label htmlFor="description">Description</label>
-        <input type="text" name="description" id="description" placeholder='description' required
-         onChange={(e)=>{}  (e.target.value)}
-        /><br />
+            <button >Submit</button>
+        
+        </form>
 
-
-        <label htmlFor="quantity">Quantity</label>
-        <input type="number" name="quantity" id="quantity" placeholder='quantity of product' required
-        onChange={(e)=>{}  (e.target.value)}
-        /><br />
-
-
-        <label htmlFor="price">Price</label>
-        <input type="number" name="price" id="price" required
-         onChange={(e)=>{}  (e.target.value)}
-        /><br />
-
-
-
-        <button type='submit'>Add Product </button>
-    
-    </form>
 
     </div>
   )
 }
 
 export default Create;
+

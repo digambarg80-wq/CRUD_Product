@@ -1,27 +1,18 @@
-//App.jsx
-import React from 'react'
 import Create from './pages/Create';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Delete from './pages/Delete';
-import Read from './pages.Read.jsx';
-import Update from './pages/Update.jsx';
- import Test from '/Test';
+import Home from './pages/Home';
+import Read from "./pages/Read";
+import Update from './pages/Update';
 function App() {
-
   return (
-    <div>
-
-   <BrowserRouter>
+    <BrowserRouter>
       <Routes>
-     <Route path="/" element={<Home />} />
-     <Route path="/read" element={<Read/>} />
-     <Route path="/create" element={<Create />} />
-     <Route path="/delete" element={<Delete />} />
-     <Route path="/update" element={<Update/>}/>
+        <Route path="/create" element={<Create />} />
+        <Route path="/" element={<Home />} />
+        <Route path='/read/:id' element={<Read/>}/>
+        <Route path='/update/:id' element={<Update/>}/>
       </Routes>
-      </BrowserRouter> 
- </div>
+    </BrowserRouter>
   )
 }
-
-export default App; 
+export default App;

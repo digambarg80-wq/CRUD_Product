@@ -1,62 +1,87 @@
 //Create.jsx
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import  {useNavigate}from "react-router-dom"
 function Create() {
+ 
+const navigate = useNavigate();
 
-  const [value, setValue]=useState({
+  const [value, setValue] = useState({
     product:"",
-    description:"",
     price:"",
+    description:"",
     quantity:""
-
   });
 
   function handleChange(e){
     setValue({
-      ...value,[e.target.name]:e.target.value
+      ...value,
+      [e.target.name]: e.target.value
     });
   }
-axios.post("http://localhost:3000/product",value)
-.then(res =>{
-  console.log("Product added ",res.data);
-})
-.catch(err => console.log(err));
+
+  function handleSubmit(e){
+    e.preventDefault();
+console.log(value);
+    axios.post("http://localhost:3000/product", value)
+    .then(res=>{
+      console.log("Resolved data:", res.data)
+      navigate("/")
+      
+    })
+    .catch(err=>{
+      console.log("Error:", err)
+    })
+  };
+
   return (
     <div>
-        <h1>Add Prdouct</h1>
+      <h1>Add Product</h1>
+<Link to="/">Back to home</Link>
+      <form onSubmit={handleSubmit}>
+    
+        <input
+          type="text"
+          name="product"
+          required
+          onChange={handleChange}
+          placeholder="Product Name"
+        /><br/>
 
-        <form onSubmit={handleSubmit}>
-            
-            <input type="text"  placeholder='ProductName' required
-            
-           
-            /><br />
+        <input
+          type="number"
+          name="price"
+          min="1"
+          required
+          onChange={handleChange}
+          placeholder="Product Price"
+        /><br/>
 
-            <input type="text" placeholder='Enter description ' required 
-            
-           
-            /><br />
+        <input
+          type="text"
+          name="description"
+          required
+          onChange={handleChange}
+          placeholder="Product Description"
+        /><br/>
 
-            <input type="number" placeholder='enter Price of Product'  required
-           
-            
-            /><br />
+        <input
+          type="number"
+          name="quantity"
+          min="1"
+          required
+          onChange={handleChange}
+          placeholder="Product Quantity"
+        /><br/>
 
-            <input type="text" placeholder='Enter Quantity of Product' required
-            
-            
-            /><br />
+        <button type="submit">Add Product</button>
 
-
-
-            <button >Submit</button>
-        
-        </form>
-
-
+      </form>
     </div>
   )
 }
+
 
 export default Create;
 
